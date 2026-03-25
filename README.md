@@ -8,12 +8,12 @@
 ---
 
 ## 🏷️ Project Title
-**[ExchangeOfficeSistemi]**
+**ExchangeOfficeSystem**
 
 ---
 
 ## 👨‍🎓 Author
-**Name:** [Ad Soyad]  
+**Name:** [Fatih Sanlı]  
 **Student ID:** [64294]  
 
 ---
