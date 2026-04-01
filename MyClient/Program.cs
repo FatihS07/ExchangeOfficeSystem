@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel; // WCF hataları için gerekli
 
 namespace MyClient
 {
@@ -10,38 +11,75 @@ namespace MyClient
     {
         static void Main(string[] args)
         {
-            // Servis bağlantısını kuruyoruz
+            // Servis istemcisini oluşturuyoruz
             ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
 
             try
             {
-                Console.WriteLine("=== NBP CURRENCY SERVICE ===");
-                Console.Write("Enter currency code (USD, EUR, GBP, etc.): ");
-                string code = Console.ReadLine().ToUpper();
+                Console.WriteLine("======================================");
+                Console.WriteLine("    NBP CURRENCY EXCHANGE SERVICE     ");
+                Console.WriteLine("======================================");
 
-                // Yeni metodu çağırıyoruz
-                double rate = client.GetExchangeRate(code);
+                Console.Write("\nEnter currency code (e.g., USD, EUR, GBP): ");
+                string input = Console.ReadLine();
 
-                if (rate > 0)
+                // Boş giriş kontrolü
+                if (string.IsNullOrWhiteSpace(input))
                 {
-                    Console.WriteLine("\n[SUCCESS]");
-                    Console.WriteLine("Current rate for " + code + " is: " + rate + " PLN");
+                    Console.WriteLine("[ERROR] Currency code cannot be empty!");
                 }
                 else
                 {
-                    Console.WriteLine("\n[ERROR]");
-                    Console.WriteLine("Could not retrieve rate for: " + code);
+                    string code = input.Trim().ToUpper();
+                    Console.WriteLine($"\nFetching rate for {code}...");
+
+                    // Servis metodunu çağırıyoruz
+                    double rate = client.GetExchangeRate(code);
+
+                    if (rate > 0)
+                    {
+                        Console.WriteLine("\n[SUCCESS]");
+                        Console.WriteLine("--------------------------------------");
+                        Console.WriteLine($"Currency: {code}");
+                        Console.WriteLine($"Rate:     {rate} PLN");
+                        Console.WriteLine("--------------------------------------");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\n[ERROR] Could not retrieve rate for: {code}");
+                        Console.WriteLine("Please check if the currency code is valid.");
+                    }
                 }
+            }
+            catch (EndpointNotFoundException)
+            {
+                // Sunucu kapalıysa bu hata düşer
+                Console.WriteLine("\n[CRITICAL ERROR] Could not connect to the service. Is the server running?");
+            }
+            catch (FaultException ex)
+            {
+                // Servis tarafında bir hata oluşursa (SOAP Fault)
+                Console.WriteLine("\n[SERVICE ERROR] The service returned an error: " + ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\nAn error occurred: " + ex.Message);
+                // Diğer beklenmedik hatalar
+                Console.WriteLine("\n[UNEXPECTED ERROR] " + ex.Message);
             }
             finally
             {
+                // WCF istemcisini güvenli kapatma protokolü
+                if (client.State == CommunicationState.Faulted)
+                {
+                    client.Abort();
+                }
+                else
+                {
+                    client.Close();
+                }
+
                 Console.WriteLine("\nPress ENTER to exit...");
                 Console.ReadLine();
-                client.Close();
             }
         }
     }
