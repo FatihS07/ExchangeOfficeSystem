@@ -99,6 +99,12 @@ namespace WpfApp1.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBuySellRates", ReplyAction="http://tempuri.org/IService1/GetBuySellRatesResponse")]
         System.Threading.Tasks.Task<WpfApp1.ServiceReference1.ExchangeRateData> GetBuySellRatesAsync(string currencyCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterUser", ReplyAction="http://tempuri.org/IService1/RegisterUserResponse")]
+        bool RegisterUser(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterUser", ReplyAction="http://tempuri.org/IService1/RegisterUserResponse")]
+        System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -134,6 +140,14 @@ namespace WpfApp1.ServiceReference1 {
         
         public System.Threading.Tasks.Task<WpfApp1.ServiceReference1.ExchangeRateData> GetBuySellRatesAsync(string currencyCode) {
             return base.Channel.GetBuySellRatesAsync(currencyCode);
+        }
+        
+        public bool RegisterUser(string username, string password) {
+            return base.Channel.RegisterUser(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password) {
+            return base.Channel.RegisterUserAsync(username, password);
         }
     }
 }

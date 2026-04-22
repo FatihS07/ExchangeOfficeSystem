@@ -9,6 +9,10 @@ namespace MyWcfService
         // Döviz Bürosu için Alış ve Satış kurlarını getiren metot (Lab 7)
         [OperationContract]
         ExchangeRateData GetBuySellRates(string currencyCode);
+
+        // YENİ: Kullanıcı Kayıt Metodu (Lab 11 - Veritabanı Bağlantısı için)
+        [OperationContract]
+        bool RegisterUser(string username, string password);
     }
 
     // Hem Alış hem Satış değerini aynı anda gönderebilmek için oluşturduğumuz Veri Modeli

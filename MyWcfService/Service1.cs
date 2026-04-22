@@ -1,44 +1,60 @@
 ﻿using System;
 using System.Net;
 using System.Text;
-using Newtonsoft.Json; // Eğer hata verirse CTRL + . ile using'i eklemeyi unutma
+using Newtonsoft.Json;
+using System.Data.SqlClient;
 
 namespace MyWcfService
 {
     public class Service1 : IService1
     {
+        // LAB 7: NBP API'den Döviz Kuru Çekme
         public ExchangeRateData GetBuySellRates(string currencyCode)
         {
             try
             {
-                // NBP API 'C' Tablosu: Alış (Bid) ve Satış (Ask) fiyatlarını verir
                 string url = $"http://api.nbp.pl/api/exchangerates/rates/c/{currencyCode.ToLower()}/?format=json";
-
                 using (WebClient client = new WebClient())
                 {
                     client.Encoding = Encoding.UTF8;
                     string json = client.DownloadString(url);
-
-                    // JSON verisini dinamik olarak çözümlüyoruz
                     dynamic data = JsonConvert.DeserializeObject(json);
-
-                    // API'den gelen bid (alış) ve ask (satış) değerlerini alıyoruz
-                    double buy = data.rates[0].bid;
-                    double sell = data.rates[0].ask;
-
-                    // Veriyi client'a gönderilmek üzere paketliyoruz
                     return new ExchangeRateData
                     {
                         Currency = currencyCode.ToUpper(),
-                        BuyRate = buy,
-                        SellRate = sell
+                        BuyRate = data.rates[0].bid,
+                        SellRate = data.rates[0].ask
                     };
                 }
             }
-            catch (Exception)
+            catch { return new ExchangeRateData { BuyRate = 0, SellRate = 0 }; }
+        }
+
+        // LAB 11: Şok Etkisi - Generic Bağlantı Dizesi
+        public bool RegisterUser(string username, string password)
+        {
+            // Initial Catalog yerine Database kullandık. 
+            // Güvenlik el sıkışmalarını (handshake) atlamak için Trusted_Connection=True ve Encrypt=False yapıldı.
+            string connString = @"Data Source=(localdb)\MSSQLLocalDB;Database=ExchangeDb;Trusted_Connection=True;MultipleActiveResultSets=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                // Hata durumunda 0 döndürüyoruz
-                return new ExchangeRateData { BuyRate = 0, SellRate = 0 };
+                string sql = "INSERT INTO Users (Username, Password) VALUES (@user, @pass)";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@user", username);
+                cmd.Parameters.AddWithValue("@pass", password);
+
+                try
+                {
+                    conn.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    return rows > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Hata mesajını WPF'e fırlatıyoruz
+                    throw new System.ServiceModel.FaultException("SQL Hatası: " + ex.Message);
+                }
             }
         }
     }
