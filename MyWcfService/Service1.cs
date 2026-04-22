@@ -1,43 +1,44 @@
 ﻿using System;
 using System.Net;
-using Newtonsoft.Json;
+using System.Text;
+using Newtonsoft.Json; // Eğer hata verirse CTRL + . ile using'i eklemeyi unutma
 
 namespace MyWcfService
 {
     public class Service1 : IService1
     {
-        // Lab 1'den kalan metot (Dursun)
-        public string MerhabaDe(string isim)
-        {
-            return "Hello " + isim + ", WCF service is working successfully!";
-        }
-
-        // --- LABS 2–4 GÖREVİ: NBP API BAĞLANTISI ---
-        public double GetExchangeRate(string currencyCode)
+        public ExchangeRateData GetBuySellRates(string currencyCode)
         {
             try
             {
-                // NBP API URL'si (Para kodunu URL içine yerleştiriyoruz)
-                string url = $"http://api.nbp.pl/api/exchangerates/rates/a/{currencyCode}/?format=json";
+                // NBP API 'C' Tablosu: Alış (Bid) ve Satış (Ask) fiyatlarını verir
+                string url = $"http://api.nbp.pl/api/exchangerates/rates/c/{currencyCode.ToLower()}/?format=json";
 
                 using (WebClient client = new WebClient())
                 {
-                    // İnternetten JSON formatındaki veriyi çekiyoruz
+                    client.Encoding = Encoding.UTF8;
                     string json = client.DownloadString(url);
 
-                    // Newtonsoft.Json kullanarak veriyi parçalıyoruz
+                    // JSON verisini dinamik olarak çözümlüyoruz
                     dynamic data = JsonConvert.DeserializeObject(json);
 
-                    // JSON içindeki "mid" (orta kur) değerini alıyoruz
-                    double rate = (double)data.rates[0].mid;
+                    // API'den gelen bid (alış) ve ask (satış) değerlerini alıyoruz
+                    double buy = data.rates[0].bid;
+                    double sell = data.rates[0].ask;
 
-                    return rate;
+                    // Veriyi client'a gönderilmek üzere paketliyoruz
+                    return new ExchangeRateData
+                    {
+                        Currency = currencyCode.ToUpper(),
+                        BuyRate = buy,
+                        SellRate = sell
+                    };
                 }
             }
             catch (Exception)
             {
-                // Hatalı kod girilirse veya internet yoksa 0 döndürür
-                return 0;
+                // Hata durumunda 0 döndürüyoruz
+                return new ExchangeRateData { BuyRate = 0, SellRate = 0 };
             }
         }
     }

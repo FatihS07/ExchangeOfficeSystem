@@ -1,18 +1,27 @@
 ﻿using System.ServiceModel;
+using System.Runtime.Serialization;
 
 namespace MyWcfService
 {
     [ServiceContract]
     public interface IService1
     {
-        // Lab 1'den kalan metot (Dursun, hatıra kalsın)
+        // Döviz Bürosu için Alış ve Satış kurlarını getiren metot (Lab 7)
         [OperationContract]
-        string MerhabaDe(string isim);
+        ExchangeRateData GetBuySellRates(string currencyCode);
+    }
 
-        // --- LABS 2–4 GÖREVİ ---
-        // Bu metot dışarıdan "USD", "EUR" gibi kodlar alacak
-        // ve NBP API'den gelen kur değerini (sayı olarak) döndürecek.
-        [OperationContract]
-        double GetExchangeRate(string currencyCode);
+    // Hem Alış hem Satış değerini aynı anda gönderebilmek için oluşturduğumuz Veri Modeli
+    [DataContract]
+    public class ExchangeRateData
+    {
+        [DataMember]
+        public string Currency { get; set; }
+
+        [DataMember]
+        public double BuyRate { get; set; }  // Döviz Bürosunun Alış Fiyatı (Bid)
+
+        [DataMember]
+        public double SellRate { get; set; } // Döviz Bürosunun Satış Fiyatı (Ask)
     }
 }
