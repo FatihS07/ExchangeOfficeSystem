@@ -10,9 +10,13 @@ namespace MyWcfService
         [OperationContract]
         ExchangeRateData GetBuySellRates(string currencyCode);
 
-        // YENİ: Kullanıcı Kayıt Metodu (Lab 11 - Veritabanı Bağlantısı için)
+        // Kullanıcı Kayıt Metodu (Lab 11 - Veritabanı Bağlantısı için)
         [OperationContract]
         bool RegisterUser(string username, string password);
+
+        // YENİ: Kullanıcı Giriş Metodu (Lab 9 - Sisteme Giriş için)
+        [OperationContract]
+        int LoginUser(string username, string password);
     }
 
     // Hem Alış hem Satış değerini aynı anda gönderebilmek için oluşturduğumuz Veri Modeli
