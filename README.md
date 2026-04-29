@@ -44,6 +44,10 @@ The aim of this project is to design and implement a client-server system using 
 
 <img width="1920" height="1045" alt="image" src="https://github.com/user-attachments/assets/50bfa2f9-79ba-4dbd-a2a8-fdc8c7059f2e" />
 
+<img width="1920" height="1034" alt="image" src="https://github.com/user-attachments/assets/10d2b4f3-07f2-47d6-86e9-64f63c3e49ee" />
+
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/a78a9901-a861-4a8c-941d-c7c432687725" />
+
 
 
 
