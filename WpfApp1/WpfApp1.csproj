@@ -106,6 +106,9 @@
     <None Include="Connected Services\ServiceReference1\WpfApp1.ServiceReference1.ExchangeRateData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference1\WpfApp1.ServiceReference1.HistoricalRate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference1\WpfApp1.ServiceReference1.WalletItem.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

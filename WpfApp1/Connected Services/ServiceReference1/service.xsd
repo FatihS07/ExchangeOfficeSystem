@@ -122,4 +122,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetHistoricalRates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="currencyCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="daysCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHistoricalRatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MyWcfService" minOccurs="0" name="GetHistoricalRatesResult" nillable="true" type="q3:ArrayOfHistoricalRate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

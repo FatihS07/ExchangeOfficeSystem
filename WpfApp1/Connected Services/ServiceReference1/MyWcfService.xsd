@@ -21,4 +21,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="WalletItem" nillable="true" type="tns:WalletItem" />
+  <xs:complexType name="ArrayOfHistoricalRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HistoricalRate" nillable="true" type="tns:HistoricalRate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHistoricalRate" nillable="true" type="tns:ArrayOfHistoricalRate" />
+  <xs:complexType name="HistoricalRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BuyRate" type="xs:double" />
+      <xs:element minOccurs="0" name="Date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SellRate" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HistoricalRate" nillable="true" type="tns:HistoricalRate" />
 </xs:schema>

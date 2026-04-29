@@ -55,6 +55,12 @@
   <wsdl:message name="IService1_GetUserCurrencies_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserCurrenciesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetHistoricalRates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistoricalRates" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetHistoricalRates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistoricalRatesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetBuySellRates">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBuySellRates" message="tns:IService1_GetBuySellRates_InputMessage" />
@@ -87,6 +93,10 @@
     <wsdl:operation name="GetUserCurrencies">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserCurrencies" message="tns:IService1_GetUserCurrencies_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserCurrenciesResponse" message="tns:IService1_GetUserCurrencies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoricalRates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetHistoricalRates" message="tns:IService1_GetHistoricalRates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetHistoricalRatesResponse" message="tns:IService1_GetHistoricalRates_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -156,6 +166,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserCurrencies">
       <soap:operation soapAction="http://tempuri.org/IService1/GetUserCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoricalRates">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetHistoricalRates" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

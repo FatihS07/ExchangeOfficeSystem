@@ -151,6 +151,83 @@ namespace WpfApp1.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HistoricalRate", Namespace="http://schemas.datacontract.org/2004/07/MyWcfService")]
+    [System.SerializableAttribute()]
+    public partial class HistoricalRate : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double BuyRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SellRateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double BuyRate {
+            get {
+                return this.BuyRateField;
+            }
+            set {
+                if ((this.BuyRateField.Equals(value) != true)) {
+                    this.BuyRateField = value;
+                    this.RaisePropertyChanged("BuyRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DateField, value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SellRate {
+            get {
+                return this.SellRateField;
+            }
+            set {
+                if ((this.SellRateField.Equals(value) != true)) {
+                    this.SellRateField = value;
+                    this.RaisePropertyChanged("SellRate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -202,6 +279,12 @@ namespace WpfApp1.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserCurrencies", ReplyAction="http://tempuri.org/IService1/GetUserCurrenciesResponse")]
         System.Threading.Tasks.Task<WpfApp1.ServiceReference1.WalletItem[]> GetUserCurrenciesAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetHistoricalRates", ReplyAction="http://tempuri.org/IService1/GetHistoricalRatesResponse")]
+        WpfApp1.ServiceReference1.HistoricalRate[] GetHistoricalRates(string currencyCode, int daysCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetHistoricalRates", ReplyAction="http://tempuri.org/IService1/GetHistoricalRatesResponse")]
+        System.Threading.Tasks.Task<WpfApp1.ServiceReference1.HistoricalRate[]> GetHistoricalRatesAsync(string currencyCode, int daysCount);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -293,6 +376,14 @@ namespace WpfApp1.ServiceReference1 {
         
         public System.Threading.Tasks.Task<WpfApp1.ServiceReference1.WalletItem[]> GetUserCurrenciesAsync(int userId) {
             return base.Channel.GetUserCurrenciesAsync(userId);
+        }
+        
+        public WpfApp1.ServiceReference1.HistoricalRate[] GetHistoricalRates(string currencyCode, int daysCount) {
+            return base.Channel.GetHistoricalRates(currencyCode, daysCount);
+        }
+        
+        public System.Threading.Tasks.Task<WpfApp1.ServiceReference1.HistoricalRate[]> GetHistoricalRatesAsync(string currencyCode, int daysCount) {
+            return base.Channel.GetHistoricalRatesAsync(currencyCode, daysCount);
         }
     }
 }
