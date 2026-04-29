@@ -9,23 +9,120 @@
 //------------------------------------------------------------------------------
 
 namespace MyClient.ServiceReference1 {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExchangeRateData", Namespace="http://schemas.datacontract.org/2004/07/MyWcfService")]
+    [System.SerializableAttribute()]
+    public partial class ExchangeRateData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double BuyRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CurrencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SellRateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double BuyRate {
+            get {
+                return this.BuyRateField;
+            }
+            set {
+                if ((this.BuyRateField.Equals(value) != true)) {
+                    this.BuyRateField = value;
+                    this.RaisePropertyChanged("BuyRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Currency {
+            get {
+                return this.CurrencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
+                    this.CurrencyField = value;
+                    this.RaisePropertyChanged("Currency");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SellRate {
+            get {
+                return this.SellRateField;
+            }
+            set {
+                if ((this.SellRateField.Equals(value) != true)) {
+                    this.SellRateField = value;
+                    this.RaisePropertyChanged("SellRate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/MerhabaDe", ReplyAction="http://tempuri.org/IService1/MerhabaDeResponse")]
-        string MerhabaDe(string isim);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBuySellRates", ReplyAction="http://tempuri.org/IService1/GetBuySellRatesResponse")]
+        MyClient.ServiceReference1.ExchangeRateData GetBuySellRates(string currencyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/MerhabaDe", ReplyAction="http://tempuri.org/IService1/MerhabaDeResponse")]
-        System.Threading.Tasks.Task<string> MerhabaDeAsync(string isim);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBuySellRates", ReplyAction="http://tempuri.org/IService1/GetBuySellRatesResponse")]
+        System.Threading.Tasks.Task<MyClient.ServiceReference1.ExchangeRateData> GetBuySellRatesAsync(string currencyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExchangeRate", ReplyAction="http://tempuri.org/IService1/GetExchangeRateResponse")]
-        double GetExchangeRate(string currencyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterUser", ReplyAction="http://tempuri.org/IService1/RegisterUserResponse")]
+        bool RegisterUser(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExchangeRate", ReplyAction="http://tempuri.org/IService1/GetExchangeRateResponse")]
-        System.Threading.Tasks.Task<double> GetExchangeRateAsync(string currencyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterUser", ReplyAction="http://tempuri.org/IService1/RegisterUserResponse")]
+        System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
+        int LoginUser(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
+        System.Threading.Tasks.Task<int> LoginUserAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBalance", ReplyAction="http://tempuri.org/IService1/GetBalanceResponse")]
+        decimal GetBalance(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBalance", ReplyAction="http://tempuri.org/IService1/GetBalanceResponse")]
+        System.Threading.Tasks.Task<decimal> GetBalanceAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddFunds", ReplyAction="http://tempuri.org/IService1/AddFundsResponse")]
+        bool AddFunds(int userId, decimal amount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddFunds", ReplyAction="http://tempuri.org/IService1/AddFundsResponse")]
+        System.Threading.Tasks.Task<bool> AddFundsAsync(int userId, decimal amount);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +152,44 @@ namespace MyClient.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public string MerhabaDe(string isim) {
-            return base.Channel.MerhabaDe(isim);
+        public MyClient.ServiceReference1.ExchangeRateData GetBuySellRates(string currencyCode) {
+            return base.Channel.GetBuySellRates(currencyCode);
         }
         
-        public System.Threading.Tasks.Task<string> MerhabaDeAsync(string isim) {
-            return base.Channel.MerhabaDeAsync(isim);
+        public System.Threading.Tasks.Task<MyClient.ServiceReference1.ExchangeRateData> GetBuySellRatesAsync(string currencyCode) {
+            return base.Channel.GetBuySellRatesAsync(currencyCode);
         }
         
-        public double GetExchangeRate(string currencyCode) {
-            return base.Channel.GetExchangeRate(currencyCode);
+        public bool RegisterUser(string username, string password) {
+            return base.Channel.RegisterUser(username, password);
         }
         
-        public System.Threading.Tasks.Task<double> GetExchangeRateAsync(string currencyCode) {
-            return base.Channel.GetExchangeRateAsync(currencyCode);
+        public System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password) {
+            return base.Channel.RegisterUserAsync(username, password);
+        }
+        
+        public int LoginUser(string username, string password) {
+            return base.Channel.LoginUser(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<int> LoginUserAsync(string username, string password) {
+            return base.Channel.LoginUserAsync(username, password);
+        }
+        
+        public decimal GetBalance(int userId) {
+            return base.Channel.GetBalance(userId);
+        }
+        
+        public System.Threading.Tasks.Task<decimal> GetBalanceAsync(int userId) {
+            return base.Channel.GetBalanceAsync(userId);
+        }
+        
+        public bool AddFunds(int userId, decimal amount) {
+            return base.Channel.AddFunds(userId, amount);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddFundsAsync(int userId, decimal amount) {
+            return base.Channel.AddFundsAsync(userId, amount);
         }
     }
 }

@@ -90,6 +90,67 @@ namespace WpfApp1.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WalletItem", Namespace="http://schemas.datacontract.org/2004/07/MyWcfService")]
+    [System.SerializableAttribute()]
+    public partial class WalletItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CurrencyField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Currency {
+            get {
+                return this.CurrencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
+                    this.CurrencyField = value;
+                    this.RaisePropertyChanged("Currency");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -105,6 +166,42 @@ namespace WpfApp1.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterUser", ReplyAction="http://tempuri.org/IService1/RegisterUserResponse")]
         System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
+        int LoginUser(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
+        System.Threading.Tasks.Task<int> LoginUserAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBalance", ReplyAction="http://tempuri.org/IService1/GetBalanceResponse")]
+        decimal GetBalance(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBalance", ReplyAction="http://tempuri.org/IService1/GetBalanceResponse")]
+        System.Threading.Tasks.Task<decimal> GetBalanceAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddFunds", ReplyAction="http://tempuri.org/IService1/AddFundsResponse")]
+        bool AddFunds(int userId, decimal amount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddFunds", ReplyAction="http://tempuri.org/IService1/AddFundsResponse")]
+        System.Threading.Tasks.Task<bool> AddFundsAsync(int userId, decimal amount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BuyCurrency", ReplyAction="http://tempuri.org/IService1/BuyCurrencyResponse")]
+        bool BuyCurrency(int userId, string currencyCode, decimal amountToBuy, decimal currentRate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BuyCurrency", ReplyAction="http://tempuri.org/IService1/BuyCurrencyResponse")]
+        System.Threading.Tasks.Task<bool> BuyCurrencyAsync(int userId, string currencyCode, decimal amountToBuy, decimal currentRate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SellCurrency", ReplyAction="http://tempuri.org/IService1/SellCurrencyResponse")]
+        bool SellCurrency(int userId, string currencyCode, decimal amountToSell, decimal currentRate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SellCurrency", ReplyAction="http://tempuri.org/IService1/SellCurrencyResponse")]
+        System.Threading.Tasks.Task<bool> SellCurrencyAsync(int userId, string currencyCode, decimal amountToSell, decimal currentRate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserCurrencies", ReplyAction="http://tempuri.org/IService1/GetUserCurrenciesResponse")]
+        WpfApp1.ServiceReference1.WalletItem[] GetUserCurrencies(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserCurrencies", ReplyAction="http://tempuri.org/IService1/GetUserCurrenciesResponse")]
+        System.Threading.Tasks.Task<WpfApp1.ServiceReference1.WalletItem[]> GetUserCurrenciesAsync(int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -148,6 +245,54 @@ namespace WpfApp1.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password) {
             return base.Channel.RegisterUserAsync(username, password);
+        }
+        
+        public int LoginUser(string username, string password) {
+            return base.Channel.LoginUser(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<int> LoginUserAsync(string username, string password) {
+            return base.Channel.LoginUserAsync(username, password);
+        }
+        
+        public decimal GetBalance(int userId) {
+            return base.Channel.GetBalance(userId);
+        }
+        
+        public System.Threading.Tasks.Task<decimal> GetBalanceAsync(int userId) {
+            return base.Channel.GetBalanceAsync(userId);
+        }
+        
+        public bool AddFunds(int userId, decimal amount) {
+            return base.Channel.AddFunds(userId, amount);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddFundsAsync(int userId, decimal amount) {
+            return base.Channel.AddFundsAsync(userId, amount);
+        }
+        
+        public bool BuyCurrency(int userId, string currencyCode, decimal amountToBuy, decimal currentRate) {
+            return base.Channel.BuyCurrency(userId, currencyCode, amountToBuy, currentRate);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BuyCurrencyAsync(int userId, string currencyCode, decimal amountToBuy, decimal currentRate) {
+            return base.Channel.BuyCurrencyAsync(userId, currencyCode, amountToBuy, currentRate);
+        }
+        
+        public bool SellCurrency(int userId, string currencyCode, decimal amountToSell, decimal currentRate) {
+            return base.Channel.SellCurrency(userId, currencyCode, amountToSell, currentRate);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SellCurrencyAsync(int userId, string currencyCode, decimal amountToSell, decimal currentRate) {
+            return base.Channel.SellCurrencyAsync(userId, currencyCode, amountToSell, currentRate);
+        }
+        
+        public WpfApp1.ServiceReference1.WalletItem[] GetUserCurrencies(int userId) {
+            return base.Channel.GetUserCurrencies(userId);
+        }
+        
+        public System.Threading.Tasks.Task<WpfApp1.ServiceReference1.WalletItem[]> GetUserCurrenciesAsync(int userId) {
+            return base.Channel.GetUserCurrenciesAsync(userId);
         }
     }
 }

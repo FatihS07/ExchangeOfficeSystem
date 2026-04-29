@@ -19,6 +19,42 @@
   <wsdl:message name="IService1_RegisterUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_LoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBalance_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBalance" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBalance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddFunds_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFunds" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddFunds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFundsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BuyCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuyCurrency" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BuyCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuyCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SellCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:SellCurrency" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SellCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SellCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserCurrencies_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserCurrencies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserCurrenciesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetBuySellRates">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBuySellRates" message="tns:IService1_GetBuySellRates_InputMessage" />
@@ -27,6 +63,30 @@
     <wsdl:operation name="RegisterUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegisterUser" message="tns:IService1_RegisterUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegisterUserResponse" message="tns:IService1_RegisterUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LoginUser" message="tns:IService1_LoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LoginUserResponse" message="tns:IService1_LoginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBalance" message="tns:IService1_GetBalance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBalanceResponse" message="tns:IService1_GetBalance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFunds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddFunds" message="tns:IService1_AddFunds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddFundsResponse" message="tns:IService1_AddFunds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuyCurrency">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BuyCurrency" message="tns:IService1_BuyCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BuyCurrencyResponse" message="tns:IService1_BuyCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SellCurrency">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SellCurrency" message="tns:IService1_SellCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SellCurrencyResponse" message="tns:IService1_SellCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCurrencies">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserCurrencies" message="tns:IService1_GetUserCurrencies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserCurrenciesResponse" message="tns:IService1_GetUserCurrencies_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -42,6 +102,60 @@
     </wsdl:operation>
     <wsdl:operation name="RegisterUser">
       <soap:operation soapAction="http://tempuri.org/IService1/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/LoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFunds">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddFunds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuyCurrency">
+      <soap:operation soapAction="http://tempuri.org/IService1/BuyCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SellCurrency">
+      <soap:operation soapAction="http://tempuri.org/IService1/SellCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCurrencies">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserCurrencies" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

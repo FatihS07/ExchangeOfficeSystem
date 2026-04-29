@@ -8,17 +8,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ExchangeRateData" nillable="true" type="tns:ExchangeRateData" />
-  <xs:complexType name="ArrayOfWalletItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="WalletItem" nillable="true" type="tns:WalletItem" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfWalletItem" nillable="true" type="tns:ArrayOfWalletItem" />
-  <xs:complexType name="WalletItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="WalletItem" nillable="true" type="tns:WalletItem" />
 </xs:schema>
