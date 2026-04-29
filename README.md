@@ -15,8 +15,8 @@
 
 
 ## 👨‍🎓 Author
-**Name:** [Fatih Sanlı]  
-**Student ID:** [64294]  
+**Name:** Fatih Sanlı  
+**Student ID:** 64294  
 
 ---
 
