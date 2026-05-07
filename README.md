@@ -86,7 +86,7 @@ This project is a comprehensive network-based application simulating a real-worl
 
 <img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/a78a9901-a861-4a8c-941d-c7c432687725" />
 
-
+<img width="1920" height="1038" alt="image" src="https://github.com/user-attachments/assets/7fd5b4de-a119-4d61-b905-15083f41ff1f" />
 
 
 
