@@ -1,29 +1,67 @@
-# 🚀 Network Application Development Project
+# Network Application Development Project
+## 🏦 Currency Exchange Office System
+
+### 📘 Course Information
+* **Course Name:** Network Application Development
+
+### 📝 Project Title
+**Distributed Currency Exchange System using WCF, WPF, and SQL Server**
+
+### 👤 Author
+* **Name:** Fatih Sanlı
+* **Student ID:** 64294
 
 ---
 
-## 📘 Course Information
-**Course Name:** Network Application Development  
+### 🚀 Project Description
+This project is a comprehensive network-based application simulating a real-world currency exchange office. It features a distributed architecture where a WCF Service handles business logic and external API communication, while a WPF client provides a modern user interface.
 
-
----
-
-## 🏷️ Project Title
-**ExchangeOfficeSystem**
-
----
-
-
-## 👨‍🎓 Author
-**Name:** Fatih Sanlı  
-**Student ID:** 64294  
+**Key Features:**
+* **Live Data:** Fetches real-time Bid/Ask rates from the **National Bank of Poland (NBP) API**.
+* **Historical Analysis:** Displays 7-day historical exchange rate trends.
+* **User Management:** Secure Registration and Login system.
+* **Virtual Wallet:** Ability to top-up PLN balance and manage multiple foreign currencies.
+* **Transaction Logging:** Every buy/sell operation is recorded in the SQL database for auditing.
 
 ---
 
-## 📌 Project Description
-This project is a network-based application developed as part of the **Network Application Development** course.
+### 📂 Repository Structure
+* **`/WCF-Service`**: Source code for the backend WCF Web Service.
+* **`/Client-Application`**: Source code for the WPF client application.
+* **`/Database`**: Contains `schema.sql` for database initialization.
+* **`/Documentation`**: Detailed system architecture and functionality report.
 
-The aim of this project is to design and implement a client-server system using modern network technologies.
+---
+
+### 🛠 How to Run the Project
+
+1.  **Database Setup:**
+    * The application uses **SQL Server LocalDB** `(localdb)\MSSQLLocalDB`.
+    * The database `ExchangeDb` and required tables are automatically created by the service on the first run.
+    * *Optional:* You can manually run the script found in `/Database/schema.sql`.
+
+2.  **Start the Web Service:**
+    * Open `MyWcfService.sln` in Visual Studio.
+    * Right-click on the `MyWcfService` project and select **View in Browser** or press **F5** to start the service.
+    * Ensure the service is running at the designated local address.
+
+3.  **Start the Client Application:**
+    * Open the `WpfApp1` project.
+    * Ensure the **Service Reference** is updated to point to your running WCF service.
+    * Run the application.
+
+4.  **Using the App:**
+    * Register a new user.
+    * Login and use the "Add PLN" button to top-up your balance.
+    * Enter a currency code (e.g., USD, EUR) to see live rates and perform transactions.
+
+---
+
+### 🛠 Technologies Used
+* **Backend:** WCF (Windows Communication Foundation), .NET
+* **Frontend:** WPF (Windows Presentation Foundation), XAML
+* **Database:** Microsoft SQL Server (LocalDB), ADO.NET
+* **External API:** NBP API (JSON)
 
 
 <img width="1915" height="1080" alt="image" src="https://github.com/user-attachments/assets/c6573c67-c986-48e6-89c1-562389cea76c" />
