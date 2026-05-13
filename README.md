@@ -1,4 +1,8 @@
 # Network Application Development Project
+
+* **Name:** Fatih Sanlı
+* **Student ID:** 64294
+
 ## 🏦 Currency Exchange Office System
 
 ### 📘 Course Information
@@ -6,10 +10,6 @@
 
 ### 📝 Project Title
 **Distributed Currency Exchange System using WCF, WPF, and SQL Server**
-
-
-* **Name:** Fatih Sanlı
-* **Student ID:** 64294
 
 ---
 
