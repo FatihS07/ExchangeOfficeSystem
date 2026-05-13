@@ -7,7 +7,7 @@
 ### 📝 Project Title
 **Distributed Currency Exchange System using WCF, WPF, and SQL Server**
 
-### 👤 Author
+
 * **Name:** Fatih Sanlı
 * **Student ID:** 64294
 
